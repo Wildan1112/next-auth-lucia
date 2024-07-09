@@ -1,7 +1,10 @@
-import Image from "next/image";
+import { redirect } from "next/navigation";
+import { validateRequest } from "@/lib/auth";
 
-export default function Home() {
-  return (
-    <h1 className="text-green-400 text-3xl">Hello Lucia</h1>
-  );
+export default async function Home() {
+  const { user } = await validateRequest();
+  if (!user) {
+    return redirect("/register");
+  }
+  return <h1>Hi, {user.username}!</h1>;
 }
