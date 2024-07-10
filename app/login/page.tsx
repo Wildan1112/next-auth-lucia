@@ -1,3 +1,4 @@
+
 import {
     Card,
     CardContent,
@@ -5,21 +6,21 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { RegisterForm } from "@/components/ui/forms/RegisterForm"
+import { LoginForm } from "@/components/ui/forms/LoginForm"
 
 
-export default function Register() {
+export default function Login() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center">
             <Card className="mx-auto max-w-sm w-full">
                 <CardHeader>
-                    <CardTitle className="text-xl">Sign Up</CardTitle>
+                    <CardTitle className="text-xl">Sign In</CardTitle>
                     <CardDescription>
-                        Enter your information to create an account
+                        Login to continue
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <RegisterForm />
+                    <LoginForm />
                 </CardContent>
             </Card>
         </main>

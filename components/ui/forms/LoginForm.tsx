@@ -9,20 +9,18 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
-import { registerSchema } from "@/lib/schema"
+import { loginSchema } from "@/lib/schema"
 
-export const RegisterForm = () => {
-    const form = useForm<z.infer<typeof registerSchema>>({
-        resolver: zodResolver(registerSchema),
+export const LoginForm = () => {
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
         defaultValues: {
-            name: "",
             email: "",
             password: "",
-            confirmPassword: "",
         },
     })
 
-    function onSubmit(values: z.infer<typeof registerSchema>) {
+    function onSubmit(values: z.infer<typeof loginSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
@@ -32,22 +30,7 @@ export const RegisterForm = () => {
             <div className="flex flex-col">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-1">
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Name</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder="John Doe"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+
                         <FormField
                             control={form.control}
                             name="email"
@@ -82,34 +65,17 @@ export const RegisterForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name="confirmPassword"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            type="password"
-                                            placeholder="******"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <Button type="submit" className="w-full mt-4">Sign Up</Button>
+                        <Button type="submit" className="w-full mt-4">Sign in</Button>
                     </form>
                 </Form>
                 <Button variant="outline" className="w-full mt-2">
-                    Sign up with GitHub
+                    Continue with GitHub
                 </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-                Already have an account?{" "}
-                <Link href="/login" className="underline">
-                    Sign in
+                Don&apos;t have an account?{" "}
+                <Link href="/register" className="underline">
+                    Sign up
                 </Link>
             </div>
         </>
