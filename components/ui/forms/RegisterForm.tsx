@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
 import { registerSchema } from "@/lib/schema"
+import { register } from "@/actions/register.action"
 
 export const RegisterForm = () => {
     const form = useForm<z.infer<typeof registerSchema>>({
@@ -22,7 +23,13 @@ export const RegisterForm = () => {
         },
     })
 
-    function onSubmit(values: z.infer<typeof registerSchema>) {
+    async function onSubmit(values: z.infer<typeof registerSchema>) {
+        const res = await register(values)
+        if (res.success) {
+            alert("success")
+        } else {
+            alert(res.error)
+        }
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
