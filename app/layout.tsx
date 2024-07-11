@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Quicksand({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-slate-800`}>{children}</body>
+      <body className={`${inter.className} min-h-screen bg-slate-800`}>{children}
+        <Toaster richColors={true} />
+      </body>
     </html>
   );
 }

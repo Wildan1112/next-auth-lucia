@@ -11,8 +11,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 import { registerSchema } from "@/lib/schema"
 import { register } from "@/actions/register.action"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 export const RegisterForm = () => {
+    const router = useRouter()
+
     const form = useForm<z.infer<typeof registerSchema>>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
@@ -26,9 +30,10 @@ export const RegisterForm = () => {
     async function onSubmit(values: z.infer<typeof registerSchema>) {
         const res = await register(values)
         if (res.success) {
-            alert("success")
+            toast.success("Account created successfully")
+            router.push('/dashboard')
         } else {
-            alert(res.error)
+            toast.error(res.error)
         }
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
