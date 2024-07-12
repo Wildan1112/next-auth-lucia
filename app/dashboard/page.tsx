@@ -2,6 +2,8 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 import { validateRequest } from "@/lib/auth";
+import { logout } from "@/actions/logout.action";
+import { Button } from "@/components/ui/button";
 
 const Dashboard = async () => {
     const { user } = await validateRequest()
@@ -21,7 +23,9 @@ const Dashboard = async () => {
 
             <div className="absolute right-0 top-0 m-4 text-white">
                 {/* Btn logout */}
-                Logout
+                <form action={logout}>
+                    <Button type='submit'>Logout</Button>
+                </form>
             </div>
         </main>
     )
