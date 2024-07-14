@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-slate-800`}>{children}
-        <Toaster richColors={true} />
+        <Toaster richColors={true} closeButton={true} />
       </body>
     </html>
   );
