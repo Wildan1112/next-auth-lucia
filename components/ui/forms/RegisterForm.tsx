@@ -13,6 +13,7 @@ import { registerSchema } from "@/lib/schema"
 import { register } from "@/actions/register.action"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { GithubButton } from "@/app/(auth)/GithubButton"
 
 export const RegisterForm = () => {
     const router = useRouter()
@@ -114,9 +115,12 @@ export const RegisterForm = () => {
                         <Button type="submit" className="w-full mt-4">Sign Up</Button>
                     </form>
                 </Form>
-                <Button variant="outline" className="w-full mt-2">
-                    Sign up with GitHub
-                </Button>
+                <div className="flex items-center justify-center my-2">
+                    <span className="w-full h-[1px] bg-slate-300"></span>
+                    <span className="mx-2">OR</span>
+                    <span className="w-full h-[1px] bg-slate-300"></span>
+                </div>
+                <GithubButton />
             </div>
             <div className="mt-4 text-center text-sm">
                 Already have an account?{" "}

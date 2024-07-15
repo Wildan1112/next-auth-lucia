@@ -13,6 +13,7 @@ import { loginSchema } from "@/lib/schema"
 import { login } from "@/actions/login.action"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { GithubButton } from "@/app/(auth)/GithubButton"
 
 export const LoginForm = () => {
     const router = useRouter()
@@ -78,9 +79,12 @@ export const LoginForm = () => {
                         <Button type="submit" className="w-full mt-4">Sign in</Button>
                     </form>
                 </Form>
-                <Button variant="outline" className="w-full mt-2">
-                    Continue with GitHub
-                </Button>
+                <div className="flex items-center justify-center my-2">
+                    <span className="w-full h-[1px] bg-slate-300"></span>
+                    <span className="mx-2">OR</span>
+                    <span className="w-full h-[1px] bg-slate-300"></span>
+                </div>
+                <GithubButton />
             </div>
             <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}
