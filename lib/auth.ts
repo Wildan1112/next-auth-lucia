@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import prisma from "./db";
 import { Lucia } from "lucia";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
+import { GitHub } from "arctic";
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user); // table user, table session
 
@@ -21,6 +22,9 @@ export const lucia = new Lucia(adapter, {
       // attributes has the type of DatabaseUserAttributes
       name: attributes.name,
       email: attributes.email,
+      // github
+      githubId: attributes.github_id,
+      username: attributes.username,
     };
   },
 });
@@ -68,4 +72,12 @@ declare module "lucia" {
 interface DatabaseUserAttributes {
   name: string;
   email: string;
+
+  github_id: number;
+  username: string;
 }
+
+export const github = new GitHub(
+  process.env.GITHUB_CLIENT_ID!,
+  process.env.GITHUB_CLIENT_SECRET!
+);
