@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import prisma from "./db";
 import { Lucia } from "lucia";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
-import { GitHub } from "arctic";
+import { GitHub, Google } from "arctic";
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user); // table user, table session
 
@@ -22,9 +22,9 @@ export const lucia = new Lucia(adapter, {
       // attributes has the type of DatabaseUserAttributes
       name: attributes.name,
       email: attributes.email,
-      // github
-      githubId: attributes.github_id,
-      username: attributes.username,
+      // // github
+      // githubId: attributes.github_id,
+      // username: attributes.username,
     };
   },
 });
@@ -73,11 +73,16 @@ interface DatabaseUserAttributes {
   name: string;
   email: string;
 
-  github_id: number;
-  username: string;
+  // github_id: number;
+  // username: string;
 }
 
 export const github = new GitHub(
   process.env.GITHUB_CLIENT_ID!,
   process.env.GITHUB_CLIENT_SECRET!
+);
+export const google = new Google(
+  process.env.GOOGLE_CLIENT_ID!,
+  process.env.GOOGLE_CLIENT_SECRET!,
+  process.env.NEXT_PUBLIC_URL + "/api/auth/google/callback"
 );
