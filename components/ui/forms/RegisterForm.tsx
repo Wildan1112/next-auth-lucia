@@ -53,7 +53,9 @@ export const RegisterForm = () => {
                                     <FormLabel>Name</FormLabel>
                                     <FormControl>
                                         <Input
+                                            type="text"
                                             placeholder="John Doe"
+                                            required
                                             {...field}
                                         />
                                     </FormControl>
@@ -71,6 +73,7 @@ export const RegisterForm = () => {
                                         <Input
                                             type="email"
                                             placeholder="example@mail.com"
+                                            required
                                             {...field}
                                         />
                                     </FormControl>
@@ -88,6 +91,7 @@ export const RegisterForm = () => {
                                         <Input
                                             type="password"
                                             placeholder="******"
+                                            required
                                             {...field}
                                         />
                                     </FormControl>
@@ -105,6 +109,7 @@ export const RegisterForm = () => {
                                         <Input
                                             type="password"
                                             placeholder="******"
+                                            required
                                             {...field}
                                         />
                                     </FormControl>

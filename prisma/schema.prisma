@@ -11,12 +11,14 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(cuid())
+  id       String  @id
   name     String
   email    String  @unique
   password String?
+  avatar   String?
 
   sessions Session[]
+  // oauthAccounts OAuthAccount[]
 
   @@map("users")
 }
@@ -30,3 +32,14 @@ model Session {
 
   @@map("sessions")
 }
+
+// model OAuthAccount {
+//   providerId     String @unique
+//   providerUserId String
+//   userId         String
+
+//   user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+//   @@id([providerId, providerUserId])
+//   @@map("oauth_accounts")
+// }

@@ -12,9 +12,7 @@ export const GoogleButton = () => {
 
             const res = await oAuthGoogle()
             if (res.url) {
-                console.log(res.url)
                 window.location.href = res.url
-
             } else {
                 toast.error(res.error)
             }

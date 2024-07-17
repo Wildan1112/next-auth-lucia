@@ -7,6 +7,7 @@ import { Argon2id } from "oslo/password";
 import { registerSchema } from "@/lib/schema";
 import { cookies } from "next/headers";
 import { lucia } from "@/lib/auth";
+import { generateIdFromEntropySize } from "lucia";
 
 export const register = async (request: z.infer<typeof registerSchema>) => {
   try {
@@ -23,8 +24,10 @@ export const register = async (request: z.infer<typeof registerSchema>) => {
     // Hashed password
     const hashedPassword = await new Argon2id().hash(request.password);
     // create user
+    const userId = generateIdFromEntropySize(10);
     const user = await prisma.user.create({
       data: {
+        id: userId,
         name: request.name,
         email: request.email,
         password: hashedPassword,
@@ -40,10 +43,10 @@ export const register = async (request: z.infer<typeof registerSchema>) => {
     );
 
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     return {
       success: false,
-      error: "Something went wrong",
+      error: error.message,
     };
   }
 };

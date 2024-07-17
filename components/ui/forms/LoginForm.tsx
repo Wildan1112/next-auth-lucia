@@ -14,6 +14,7 @@ import { login } from "@/actions/login.action"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { GithubButton } from "@/app/(auth)/GithubButton"
+import { GoogleButton } from "@/app/(auth)/GoogleButton"
 
 export const LoginForm = () => {
     const router = useRouter()
@@ -52,6 +53,7 @@ export const LoginForm = () => {
                                         <Input
                                             type="email"
                                             placeholder="example@mail.com"
+                                            required
                                             {...field}
                                         />
                                     </FormControl>
@@ -69,6 +71,7 @@ export const LoginForm = () => {
                                         <Input
                                             type="password"
                                             placeholder="******"
+                                            required
                                             {...field}
                                         />
                                     </FormControl>
@@ -85,6 +88,7 @@ export const LoginForm = () => {
                     <span className="w-full h-[1px] bg-slate-300"></span>
                 </div>
                 <GithubButton />
+                <GoogleButton />
             </div>
             <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}
