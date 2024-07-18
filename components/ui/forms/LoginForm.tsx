@@ -87,8 +87,8 @@ export const LoginForm = () => {
                     <span className="mx-2">OR</span>
                     <span className="w-full h-[1px] bg-slate-300"></span>
                 </div>
-                <GithubButton />
                 <GoogleButton />
+                <GithubButton />
             </div>
             <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}

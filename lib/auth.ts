@@ -24,8 +24,8 @@ export const lucia = new Lucia(adapter, {
       email: attributes.email,
       avatar: attributes.avatar,
       // // github
-      // githubId: attributes.github_id,
-      // username: attributes.username,
+      githubId: attributes.github_id,
+      username: attributes.username,
     };
   },
 });
@@ -75,13 +75,16 @@ interface DatabaseUserAttributes {
   email: string;
   avatar: string;
 
-  // github_id: number;
-  // username: string;
+  github_id: number;
+  username: string;
 }
 
 export const github = new GitHub(
   process.env.GITHUB_CLIENT_ID!,
-  process.env.GITHUB_CLIENT_SECRET!
+  process.env.GITHUB_CLIENT_SECRET!,
+  {
+    redirectURI: process.env.NEXT_PUBLIC_URL + "/api/auth/github/callback",
+  }
 );
 export const google = new Google(
   process.env.GOOGLE_CLIENT_ID!,

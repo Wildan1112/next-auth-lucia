@@ -1,14 +1,14 @@
 'use client'
 
-import { oAuthGoogle } from "@/actions/oauth.action"
+import Image from "next/image"
+
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { oAuthGoogle } from "@/actions/oauth.action"
 
 export const GoogleButton = () => {
-    const router = useRouter()
     return (
-        <Button className="w-full mt-2" onClick={async () => {
+        <Button variant={"outline"} className="w-full mb-2 font-semibold" onClick={async () => {
 
             const res = await oAuthGoogle()
             if (res.url) {
@@ -17,7 +17,7 @@ export const GoogleButton = () => {
                 toast.error(res.error)
             }
         }}>
-            {/* <GithubIcon className="w-4 h-4 mr-2" /> */}
+            <Image src={"/google.svg"} className="w-4 h-4 mr-2" alt="google" width={48} height={48} />
             Continue with Google
         </Button>
     )

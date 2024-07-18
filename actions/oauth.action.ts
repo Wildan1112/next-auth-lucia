@@ -6,17 +6,19 @@ import { cookies } from "next/headers";
 
 export const githubOauth = async () => {
   // TODO
-  // try {
-  //   const state = generateState();
-  //   const url = await github.createAuthorizationURL(state);
-  //   cookies().set("github_oauth_state", state, {
-  //     httpOnly: true,
-  //     secure: process.env.NODE_ENV === "production",
-  //   });
-  //   return { success: true, url: url.toString() };
-  // } catch (error) {
-  //   return { success: false, error: "Something went wrong" };
-  // }
+  try {
+    const state = generateState();
+    const url = await github.createAuthorizationURL(state);
+
+    cookies().set("github_oauth_state", state, {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+    });
+
+    return { success: true, url: url.toString() };
+  } catch (error) {
+    return { success: false, error: "Something went wrong" };
+  }
 };
 
 export const oAuthGoogle = async () => {
