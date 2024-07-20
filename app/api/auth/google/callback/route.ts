@@ -1,10 +1,12 @@
 import prisma from "@/lib/db";
+
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 import { generateIdFromEntropySize } from "lucia";
-import { google, lucia } from "@/lib/auth";
+import { lucia } from "@/lib/lucia/auth";
+import { google } from "@/lib/lucia/oauth_providers";
 
 // http://localhost:3000/api/auth/google/callback
 export async function GET(req: NextRequest, res: Response) {

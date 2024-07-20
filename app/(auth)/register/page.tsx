@@ -6,7 +6,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { RegisterForm } from "@/components/ui/forms/RegisterForm"
-import { validateRequest } from "@/lib/auth"
+import { validateRequest } from "@/lib/lucia/auth"
 import { redirect } from "next/navigation"
 
 

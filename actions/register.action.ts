@@ -6,7 +6,7 @@ import { Argon2id } from "oslo/password";
 
 import { registerSchema } from "@/lib/schema";
 import { cookies } from "next/headers";
-import { lucia } from "@/lib/auth";
+import { lucia } from "@/lib/lucia/auth";
 import { generateIdFromEntropySize } from "lucia";
 
 export const register = async (request: z.infer<typeof registerSchema>) => {

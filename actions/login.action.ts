@@ -4,7 +4,7 @@ import { z } from "zod";
 import { loginSchema } from "@/lib/schema";
 import prisma from "@/lib/db";
 import { Argon2id } from "oslo/password";
-import { lucia } from "@/lib/auth";
+import { lucia } from "@/lib/lucia/auth";
 import { cookies } from "next/headers";
 
 export const login = async (request: z.infer<typeof loginSchema>) => {

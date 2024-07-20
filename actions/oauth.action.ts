@@ -1,14 +1,16 @@
 "use server";
 
-import { github, google } from "@/lib/auth";
-import { generateCodeVerifier, generateState } from "arctic";
 import { cookies } from "next/headers";
+import { generateCodeVerifier, generateState } from "arctic";
+import { github, google } from "@/lib/lucia/oauth_providers";
 
 export const githubOauth = async () => {
   // TODO
   try {
     const state = generateState();
-    const url = await github.createAuthorizationURL(state);
+    const url = await github.createAuthorizationURL(state, {
+      scopes: ["user:email"],
+    });
 
     cookies().set("github_oauth_state", state, {
       secure: process.env.NODE_ENV === "production",

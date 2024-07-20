@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/lib/lucia/auth";
 
 export default async function Home() {
   const { user } = await validateRequest();
