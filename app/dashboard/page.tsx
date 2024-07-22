@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { validateRequest } from "@/lib/lucia/auth";
 import { logout } from "@/actions/logout.action";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Dashboard = async () => {
     const { user } = await validateRequest()
@@ -12,7 +13,7 @@ const Dashboard = async () => {
     }
 
     return (
-        <main className="min-h-screen flex flex-wrap justify-center items-center">
+        <main className="min-h-screen flex flex-col gap-2 flex-wrap justify-center items-center">
             <div className="bg-white border p-4 rounded flex items-center gap-2">
 
                 <Image src={user.avatar ?? '/robot.svg'} alt="Next.js Logo" width={48} height={48} className="rounded-full mr-2 border border-slate-500" />
@@ -24,6 +25,11 @@ const Dashboard = async () => {
                     {user.email && <p className="text-sm text-slate-400">{user.email}</p>}
                     {/* {JSON.stringify(user)} */}
                 </div>
+            </div>
+            <div>
+                <Link href="/dashboard/change-password">
+                    <Button variant={"link"} className="text-white">Change Password</Button>
+                </Link>
             </div>
 
             <div className="absolute right-0 top-0 m-4 text-white">
