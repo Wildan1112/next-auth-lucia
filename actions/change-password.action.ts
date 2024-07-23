@@ -13,6 +13,7 @@ export const changePassword = async (
   try {
     const argon2 = new Argon2id();
 
+    // Validate user request
     const { user } = await validateRequest();
     if (!user) {
       return {
@@ -21,6 +22,7 @@ export const changePassword = async (
       };
     }
 
+    // Check existing user
     const existingUser = await prisma.user.findFirst({
       where: {
         id: user.id,
@@ -45,6 +47,7 @@ export const changePassword = async (
       };
     }
 
+    // Hash & update password
     const hashedPassword = await argon2.hash(values.newPassword);
     await prisma.user.update({
       where: {
@@ -55,6 +58,7 @@ export const changePassword = async (
       },
     });
 
+    // Delete all sessions on other devices
     await prisma.session.deleteMany({
       where: {
         userId: user.id,
@@ -71,6 +75,7 @@ export const changePassword = async (
 
     return {
       success: true,
+      message: "Password changed successfully",
     };
   } catch (error) {
     return {

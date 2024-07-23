@@ -1,8 +1,8 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -14,9 +14,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { changePassword } from "@/actions/change-password.action";
 import { toast } from "sonner";
 import { ChangePasswordSchema } from "@/lib/schema";
+import { changePassword } from "@/actions/change-password.action";
 
 
 const ChangePassword = () => {
@@ -33,15 +33,14 @@ const ChangePassword = () => {
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof ChangePasswordSchema>) {
         const res = await changePassword(values)
+
         if (res.success) {
-            toast.success('Password changed successfully')
+            toast.success(res.message)
         } else {
             toast.error(res.error)
         }
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
     }
+
     return (
         <div className="min-h-screen justify-center items-center flex flex-col max-w-sm mx-auto">
             <Card className="mx-auto max-w-sm w-full" >
